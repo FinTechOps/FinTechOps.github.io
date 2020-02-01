@@ -1,7 +1,7 @@
 --- 
 layout: default 
 title: FinTech,DevOps
-description: Sharing about Application Development, Integration, Cloud, Big Data and Digital Transformation
+description: FinTech,DevOps
 comments: true 
 ---
 
@@ -9,18 +9,18 @@ comments: true
 <div >
 	{% if paginator.previous_page %}
 		<a href="{{ paginator.previous_page_path }}" >
-		Previous
+		上一页
 		</a>
 	{% else %}
-		<span>Previous</span>
+		<span>上一页</span>
 	{% endif %}
 	| <span class="page_number ">
 		Page: {{ paginator.page }} of {{ paginator.total_pages }}
 	</span> | 
 	{% if paginator.next_page %}
-		<a href="{{ paginator.next_page_path }}" >Next</a>
+		<a href="{{ paginator.next_page_path }}" >下一页</a>
 	{% else %}
-		<span >Next</span>
+		<span >下一页</span>
 	{% endif %}
 </div>
 
@@ -51,18 +51,18 @@ comments: true
 <div >
 {% if paginator.previous_page %}
 	<a href="{{ paginator.previous_page_path }}" >
-	Previous
+	上一页
 	</a>
 {% else %}
-	<span>Previous</span>
+	<span>上一页</span>
 {% endif %}
 | <span class="page_number ">
 	Page: {{ paginator.page }} of {{ paginator.total_pages }}
 </span> | 
 {% if paginator.next_page %}
-	<a href="{{ paginator.next_page_path }}" >Next</a>
+	<a href="{{ paginator.next_page_path }}" >下一页</a>
 {% else %}
-	<span >Next</span>
+	<span >下一页</span>
 {% endif %}
 </div>
 	  
