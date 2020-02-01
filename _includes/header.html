@@ -45,12 +45,12 @@
 	</nav>
 
 		<!--正文不加载图片， 注释被 snakechen-->
-		<!--{% if page.noimage %}-->
-		<!--{% else %}-->
-		<!--<img-->
-			<!--alt="{{ page.title }}"-->
-			<!--src="/assets/images/{{page.id}}/top.jpg" class="img-responsive">-->
-		<!--{% endif %}-->
+		{% if page.noimage %}
+		{% else %}
+		<img
+			alt="{{ page.title }}"
+			src="/assets/images/{{page.id}}/top.jpg" class="img-responsive">
+		{% endif %}
 
 	<div class="jumbotron  clearfix">
 
