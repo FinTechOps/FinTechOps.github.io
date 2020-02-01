@@ -7,7 +7,7 @@
 
 	{% if page.id %}
 	<p>
-		<strong>{{ page.published | date: '%B %d, %Y' }}</strong> ( 最后更新 : {{ page.date | date: '%B %d, %Y' }} )
+		<strong>{{ page.published | date: '%B %d, %Y' }}| {{page.author}} </strong> ( 最后更新 : {{ page.date | date: '%B %d, %Y' }} )
 		<br>
 		{% for tag in page.tags %}
 			<a class="label label-default" href="/tags/#{{ tag | slugify }}">{{ tag }}</a>
