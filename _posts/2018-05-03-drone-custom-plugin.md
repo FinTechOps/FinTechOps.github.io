@@ -10,9 +10,21 @@ tags: [CICD]
 
 
 <p>
+    When using Apache Camel with Quarkus as of today, we are limited number of Camel connectors. One important one being
+    the Apache Kafka connector.
+    The Kafka connector provided through the Smallrye Kafka Extension is available for Quarkus though. So in this
+    article, I will show how to
+    wire Smallrye Kafka connector and Camel together.
+    We will also be using the camel-servlet component to reuse the undertow http endpoint provided by Quarkus and to
+    spice things up a little we will use the XML DSL of Camel.
+    All of this will be natively compiled in the end.
+</p>
+
+
+
 Docker 容器在启动的时候可以配置一个启动命令，这样我们就可以做到实例化插件容器的时候就执行插件脚本。
 另外 Drone 运行插件的时候可以将本次构建相关的信息以及插件配置信息以环境变量的形式注入到插件容器中去，所有的语言都可以读取系统环境变量，这样就可以使用任意的语言来编写drone插件
-</p>
+
 
 # 原理
 
