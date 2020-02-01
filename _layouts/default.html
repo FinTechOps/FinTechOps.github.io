@@ -7,7 +7,7 @@
 
 	{% if page.id %}
 	<p>
-		<strong>{{ page.published | date: '%B %d, %Y' }}</strong> ( last updated : {{ page.date | date: '%B %d, %Y' }} )
+		<strong>{{ page.published | date: '%B %d, %Y' }}</strong> ( 最后更新 : {{ page.date | date: '%B %d, %Y' }} )
 		<br>
 		{% for tag in page.tags %}
 			<a class="label label-default" href="/tags/#{{ tag | slugify }}">{{ tag }}</a>
@@ -21,7 +21,7 @@
 	</p>
 	{% endif %}
 	<hr>
-	<h1>Abstract</h1>
+	<h1>摘要</h1>
 	{% endif %}
 
 	{{ content }}
