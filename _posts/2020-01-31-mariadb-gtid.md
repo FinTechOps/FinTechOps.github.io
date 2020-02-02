@@ -1,8 +1,8 @@
 ---
 layout: default
-title: "DRONE编写自定义插件"
-date: 2018-05-03 05:00:00 +0200
-published: 2018-05-03 05:00:00 +0200
+title: "MaridDB升级复制模式为GTID"
+date: 2020-01-31 05:00:00 +0200
+published: 2020-01-31 05:00:00 +0200
 comments: true
 categories: 数据库
 tags: [database]
