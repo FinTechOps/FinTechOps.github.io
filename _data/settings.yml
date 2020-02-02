@@ -9,10 +9,10 @@ google-ID: 'UA-91332049-1'
 menu: 
   - name: 推荐文章
     submenu:
-      - name: MicroBam
-        link: /projects/microbam
-      - name: OurLegacy
-        link: /projects/ourlegacy
+      - name: CICD
+        link: /tags/#cicd
+      - name: KUBERNETES
+        link: /tags/#kubernetes
   - name: 主页
     link: /
   - name: 标签
