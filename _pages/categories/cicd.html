@@ -54,7 +54,7 @@ Here we generate all the tags.
 
     <!--15天内的文章标记为新文章-->
 
-    if {% long < 1296000 %}
+    {% if long < 1296000 %}
 
     <li class="list-group-item">
         <a href="{{ post.url }}">
