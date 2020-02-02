@@ -12,15 +12,15 @@ menu:
   - name: 推荐文章
     submenu:
       - name: CICD
-        link: /tags/#cicd
+        link: /recommend/cicd
       - name: KUBERNETES
-        link: /tags/#kubernetes
+        link: /recommend/kubernetes
   - name: 专题
     submenu:
       - name: 调用链追踪
-        link: /tags/tracing
+        link: /topic/tracing
       - name: Envoy
-        link: /tags/envoy
+        link: /topic/envoy
   - name: 分类
     submenu:
       - name: 网络技术
