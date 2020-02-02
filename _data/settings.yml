@@ -18,37 +18,33 @@ menu:
   - name: 专题
     submenu:
       - name: 调用链追踪
-        link: /tags/#tracing
+        link: /tags/tracing
       - name: Envoy
-        link: /tags/#envoy
+        link: /tags/envoy
   - name: 分类
     submenu:
-      - name: 网络知识
-        link: /tags/#network
+      - name: 网络技术
+        link: /categories/network
       - name: 操作系统
-        link: /tags/#os
+        link: /categories/#os
       - name: CICD
-        link: /tags/#cicd
+        link: /categories/#cicd
       - name: Kubernetes
-        link: /tags/#kubernetes
+        link: /categories/#kubernetes
       - name: ServiceMesh
-        link: /tags/#srvicemesh
+        link: /categories/#srvicemesh
       - name: 监控
-        link: /tags/#monitor
+        link: /categories/#monitor
       - name: 开发技术
-        link: /tags/#develop
+        link: /categories/#develop
       - name: 数据库
-        link: /tags/#database
+        link: /categories/#database
       - name: 系统架构
-        link: /tags/#architecture
+        link: /categories/#architecture
       - name: 企业IT
-        link: /tags/#it
+        link: /categories/#it
   - name: 标签
     link: /tags
-
-  - name: 目录
-    link: /categories
-
   - name: 关于
     link: /about
   - name: 联系

@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 分类
-permalink: /categories/
+title: 网络技术
+permalink: /categories/network
 ---
 
 {% comment%}
@@ -33,12 +33,21 @@ Here we generate all the tags.
 
 <br/>
 
-{% for category in site.categories %}
-<h2>{{ category | first }}</h2>
-</span>{{ category | last | size }}</span>
-<ul class="arc-list">
-    {% for post in category.last %}
-        <li>{{ post.date | date:"%d/%m/%Y"}}<a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
+<!--{% for tag in tags %}-->
+<!--<a class="label label-success" href="#{{ tag | slugify }}" > {{ tag }} </a> &nbsp;-->
+<!--{% endfor %}-->
+
+{% for tag in tags %}
+<h4 id="{{ tag | slugify }}">{{ tag }}</h4>
+<ul>
+  {% for post in site.posts %}
+  {% if post.tags == "network" %}
+  <li>
+      <a href="{{ post.url }}">
+        {{ post.title }}-{{ post.author}}
+      </a>
+  </li>
+  {% endif %}
+  {% endfor %}
 </ul>
 {% endfor %}
