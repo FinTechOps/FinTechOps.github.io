@@ -35,9 +35,9 @@ Here we generate all the tags.
 
 
 {% for tag in tags %}
-<!--{% if tag == "cicd" %}-->
+{% if tag == "cicd" %}
 <a class="label label-success" href="#{{ tag | slugify }}"> {{ tag }} </a> &nbsp;
-<!--{% endif %}-->
+{% endif %}
 {% endfor %}
 
 {% for tag in tags %}
