@@ -30,7 +30,7 @@ comments: true
 	<a href="{{ post.url }}">
 		<h4 class="list-group-item-heading">{{ post.title }}</h4>
 		<h6 class="list-group-item-heading">{{ post.published | date: '%B %d,
-			%Y' }} | (最后更新 : {{ post.date | date: '%B %d, %Y' }}) | 作者 ：{{page.author}}</h6></a>
+			%Y' }} | (最后更新 : {{ post.date | date: '%B %d, %Y' }}) | 作者 ：{{post.author}}</h6></a>
 		{% for tag in post.tags %}
 		<a class="label label-default" href="/tags/#{{ tag | slugify }}">{{ tag }}</a>
 		{% endfor %}
