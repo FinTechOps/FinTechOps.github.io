@@ -45,6 +45,10 @@ menu:
         link: /tags/#it
   - name: 标签
     link: /tags
+
+  - name: 目录
+    link: /categories
+
   - name: 关于
     link: /about
   - name: 联系
