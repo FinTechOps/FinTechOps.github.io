@@ -36,4 +36,6 @@ tags: [CICD]
 author: snakechen
 ---
 
+(3)摘要页面必须带上图片，图片大小1920*288， 图片自定义裁剪可用https://onlinejpgtools.com/crop-jpg工具
+
 ```
