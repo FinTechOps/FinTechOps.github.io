@@ -104,7 +104,7 @@ pipeline:
 ##### drone控制台输出效果
 
 
-<img src="/images/posts/drone-custom-plugin/drone-plugin-demo.png" width="100%"/>
+<img src="/assets/images/posts/drone-custom-plugin/drone-plugin-demo.png" width="100%"/>
 
 
 
