@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "MaridDB升级复制模式为GTID"
+title: "MariaDB升级复制模式为GTID"
 date: 2020-01-31 05:00:00 +0200
 published: 2020-01-31 05:00:00 +0200
 comments: true
