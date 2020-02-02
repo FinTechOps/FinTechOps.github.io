@@ -26,23 +26,23 @@ menu:
       - name: 网络技术
         link: /categories/network
       - name: 操作系统
-        link: /categories/#os
+        link: /categories/os
       - name: CICD
-        link: /categories/#cicd
+        link: /categories/cicd
       - name: Kubernetes
-        link: /categories/#kubernetes
+        link: /categories/kubernetes
       - name: ServiceMesh
-        link: /categories/#srvicemesh
+        link: /categories/srvicemesh
       - name: 监控
-        link: /categories/#monitor
+        link: /categories/monitor
       - name: 开发技术
-        link: /categories/#develop
+        link: /categories/develop
       - name: 数据库
-        link: /categories/#database
+        link: /categories/database
       - name: 系统架构
-        link: /categories/#architecture
+        link: /categories/architecture
       - name: 企业IT
-        link: /categories/#it
+        link: /categories/it
   - name: 标签
     link: /tags
   - name: 关于
