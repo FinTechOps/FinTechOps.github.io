@@ -1,8 +1,8 @@
 ---
 layout: default
 title: "Drone编写自定义插件"
-date: 2018-05-03 05:00:00 +0200
-published: 2018-05-03 05:00:00 +0200
+date: 2018-05-03 05:00:00
+published: 2018-05-03 05:00:00
 comments: true
 categories: CICD
 tags: [cicd]
