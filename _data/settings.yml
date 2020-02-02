@@ -23,10 +23,12 @@ menu:
         link: /tags/#envoy
   - name: 分类
     submenu:
-      - name: CICD
-        link: /tags/#cicd
       - name: 网络知识
         link: /tags/#network
+      - name: 操作系统
+        link: /tags/#os
+      - name: CICD
+        link: /tags/#cicd
       - name: Kubernetes
         link: /tags/#kubernetes
       - name: ServiceMesh
@@ -35,10 +37,10 @@ menu:
         link: /tags/#monitor
       - name: 开发技术
         link: /tags/#develop
-      - name: 操作系统
-        link: /tags/#os
       - name: 数据库
         link: /tags/#database
+      - name: 系统架构
+        link: /tags/#architecture
       - name: 企业IT
         link: /tags/#it
   - name: 标签
