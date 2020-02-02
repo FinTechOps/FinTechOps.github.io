@@ -13,6 +13,12 @@ menu:
         link: /tags/#cicd
       - name: KUBERNETES
         link: /tags/#kubernetes
+   - name: 专题
+    submenu:
+      - name: CICD
+        link: /tags/#cicd
+      - name: KUBERNETES
+        link: /tags/#kubernetes
   - name: 主页
     link: /
   - name: 标签
