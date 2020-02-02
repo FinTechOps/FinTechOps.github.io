@@ -42,14 +42,35 @@ Here we generate all the tags.
 {% for tag in tags %}
 {% if tag == "network" %}
 <h4 id="{{ tag | slugify }}">{{ tag }}</h4>
-<ul>
+<ul class="list-group">
     {% for post in site.posts %}
     {% if post.tags contains tag %}
-    <li>
+
+
+    {% assign today = site.time | date: '%s' %}
+    {% assign published = post.published | date: '%s' %}
+    {% assign long = today | minus: published %}
+
+    <!--15天内的文章标记为新文章-->
+
+    {% if long < 1296000 %}
+
+    <li class="list-group-item">
         <a href="{{ post.url }}">
-            {{ post.title }}-{{ post.author}}
+            <span class="badge" style="background-color: orange">新</span>>
+            {{ post.title }} - <span style="font-size: 6px; color: darkgrey">by</span> [{{ post.author}}] [ {{
+            post.published }} ]
         </a>
     </li>
+    {% else %}
+      <li class="list-group-item">
+        <a href="{{ post.url }}">
+            {{ post.title }} - <span style="font-size: 6px; color: darkgrey">by</span> [{{ post.author}}] [ {{
+            post.published }} ]
+        </a>
+    </li>
+    {% endif %}
+
     {% endif %}
     {% endfor %}
 </ul>
