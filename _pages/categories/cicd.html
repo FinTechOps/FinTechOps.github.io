@@ -42,12 +42,12 @@ Here we generate all the tags.
 {% for tag in tags %}
 {% if tag == "cicd" %}
 <h4 id="{{ tag | slugify }}">{{ tag }}</h4>
-<ul>
+<ul class="list-group">
     {% for post in site.posts %}
     {% if post.tags contains tag %}
-    <li>
+    <li class="list-group-item">
         <a href="{{ post.url }}">
-            {{ post.title }}-{{ post.author}}
+            {{ post.title }} - <span style="font-size: 6px; color: darkgrey">by</span> [{{ post.author}}]
         </a>
     </li>
     {% endif %}
