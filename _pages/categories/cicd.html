@@ -48,7 +48,7 @@ Here we generate all the tags.
     {% if post.tags contains tag %}
     <li class="list-group-item">
         <a href="{{ post.url }}">
-            {{ post.title }} - <span style="font-size: 6px; color: darkgrey">by</span> [{{ post.author}}]
+            {{ post.title }} - <span style="font-size: 6px; color: darkgrey">by</span> [{{ post.author}}] [ {{ post.published }} ]
         </a>
     </li>
         <!--bbb-->
