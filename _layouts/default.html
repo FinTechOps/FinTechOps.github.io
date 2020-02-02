@@ -7,7 +7,7 @@
 
 	{% if page.id %}
 	<p>
-		<strong>{{ page.published | date: '%B %d, %Y' }}| {{page.author}} </strong> ( 最后更新 : {{ page.date | date: '%B %d, %Y' }} )
+		<strong>{{ page.published | date: '%Y-%m-%d' }}| {{page.author}} </strong> ( 最后更新 : {{ page.date | date: '%B %d, %Y' }} )
 		<br>
 		{% for tag in page.tags %}
 			<a class="label label-default" href="/tags/#{{ tag | slugify }}">{{ tag }}</a>
@@ -28,8 +28,8 @@
 
 
 	{% if page.id %}
-	<p> 首次发布 {{ page.published | date: '%B %d, %Y' }}
-    <br> 最近更新 {{ page.date | date: '%B %d, %Y' }}</p>
+	<p> 首次发布 {{ page.published | date: '%Y-%m-%d' }}
+    <br> 最近更新 {{ page.date | date: '%Y-%m-%d' }}</p>
 
     <p><strong>Related posts :</strong></p>
         <ul>
