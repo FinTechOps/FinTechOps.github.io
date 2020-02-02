@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 网络技术
-permalink: /categories/network
+title: CICD
+permalink: /categories/cicd
 ---
 
 {% comment%}
@@ -34,13 +34,13 @@ Here we generate all the tags.
 <br/>
 
 {% for tag in tags %}
-{% if tag == "network" %}
+{% if tag == "cicd" %}
 <a class="label label-success" href="#{{ tag | slugify }}"> {{ tag }} </a> &nbsp;
 {% endif %}
 {% endfor %}
 
 {% for tag in tags %}
-{% if tag == "network" %}
+{% if tag == "cicd" %}
 <h4 id="{{ tag | slugify }}">{{ tag }}</h4>
 <ul>
     {% for post in site.posts %}
