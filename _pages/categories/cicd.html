@@ -53,7 +53,7 @@ Here we generate all the tags.
     </li>
         bbb
     {% assign today = site.time | date: '%s' %}
-    {% assign published = {{ post.published }} | date: '%s' %}
+    {% assign published = post.published  | date: '%s' %}
     today: {{today}}
     publish: {{published}}
 
