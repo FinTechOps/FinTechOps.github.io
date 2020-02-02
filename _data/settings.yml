@@ -32,7 +32,7 @@ menu:
       - name: Kubernetes
         link: /categories/kubernetes
       - name: ServiceMesh
-        link: /categories/srvicemesh
+        link: /categories/servicemesh
       - name: 监控
         link: /categories/monitor
       - name: 开发技术
