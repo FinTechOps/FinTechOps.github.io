@@ -6,7 +6,9 @@ disqus:
 # If you are not using Google Analytics, please change 'google-ID' to an empty string
 google-ID: 'UA-91332049-1'
 
-menu: 
+menu:
+  - name: 主页
+    link: /
   - name: 推荐文章
     submenu:
       - name: CICD
@@ -15,12 +17,30 @@ menu:
         link: /tags/#kubernetes
   - name: 专题
     submenu:
+      - name: 调用链追踪
+        link: /tags/#tracing
+      - name: Envoy
+        link: /tags/#envoy
+  - name: 分类
+    submenu:
       - name: CICD
         link: /tags/#cicd
-      - name: KUBERNETES
+      - name: 网络知识
+        link: /tags/#network
+      - name: Kubernetes
         link: /tags/#kubernetes
-  - name: 主页
-    link: /
+      - name: ServiceMesh
+        link: /tags/#srvicemesh
+      - name: 监控
+        link: /tags/#monitor
+      - name: 开发技术
+        link: /tags/#develop
+      - name: 操作系统
+        link: /tags/#os
+      - name: 数据库
+        link: /tags/#database
+      - name: 企业IT
+        link: /tags/#it
   - name: 标签
     link: /tags
   - name: 关于
