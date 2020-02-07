@@ -170,13 +170,11 @@ udp6       0      0 :::9094                 :::*                                
 Description=Prometheus node exporter
 After=local-fs.target network-online.target network.target
 Wants=local-fs.target network-online.target network.target
-
 [Service]
 User=root
 Group=root
 Type=simple
 ExecStart=/opt/node_exporter-0.18.1.linux-amd64/node_exporter
-
 [Install]
 WantedBy=multi-user.target
 [root@prometheus-server-192-168-100-100 opt]# systemctl daemon-reload
@@ -295,6 +293,8 @@ prometheus在收集到监控数据过后，会根据配置中的rules规则，�
 - 由此可以写出rules规则：
 
 ```yaml
+[root@prometheus-server-192-168-100-100 prometheus-2.15.2.linux-amd64]# mkdir rules
+[root@prometheus-server-192-168-100-100 prometheus-2.15.2.linux-amd64]# vi rules/node_exporter.yml
 groups:
 - name: NodeExporterAlert
   rules:
@@ -309,4 +309,58 @@ groups:
       summary: "Out of memory (instance {{ $labels.instance }})"
       description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
 ```
+- 配置prometheus使rules生效
 
+```yaml
+[root@prometheus-server-192-168-100-100 prometheus-2.15.2.linux-amd64]# vi prometheus.yml
+# 全局配置
+global:
+  scrape_interval:     15s   # 多久 收集 一次数据
+  evaluation_interval: 30s   # 多久评估一次 规则
+  scrape_timeout:      10s   # 每次 收集数据的 超时时间
+  # 当Prometheus和外部系统(联邦, 远程存储, Alertmanager)通信的时候，添加标签到任意的时间序列或者报警
+  external_labels:
+    monitor: codelab
+    foo:     bar
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - 127.0.0.1:9093 # 配置alertmanager
+
+# 将rules文件引入
+rule_files:
+  - 'rules/node_exporter.yml'
+
+scrape_configs:
+  - job_name: 'monitoring/prometheus'
+    static_configs:
+    - targets: ['localhost:9090'] # 配置收集prometheus数据
+
+  - job_name: 'monitoring/alertmanager'
+    static_configs:
+    - targets: ['localhost:9093'] # 配置收集alertmanager数据
+
+  - job_name: 'monitoring/node_exporter'
+    static_configs:
+    - targets:
+      - 192.168.100.100:9100
+      - 192.168.100.101:9100
+      - 192.168.100.102:9100
+      - 192.168.100.103:9100
+
+# 检查配置并生效
+[root@prometheus-server-192-168-100-100 prometheus-2.15.2.linux-amd64]# ./promtool check config ./prometheus.yml 
+Checking ./prometheus.yml
+  SUCCESS: 1 rule files found
+
+Checking rules/node_exporter.yml
+  SUCCESS: 1 rules found
+
+[root@prometheus-server-192-168-100-100 prometheus-2.15.2.linux-amd64]# curl -XPOST http://127.0.0.1:9090/-/reload
+[root@prometheus-server-192-168-100-100 prometheus-2.15.2.linux-amd64]# 
+```
+
+- 验证rules配置正常，游览器访问：http://192.168.100.100:9090/alerts
+
+<img src="/assets/images/posts/prometheus/prometheus-rules.png" width="100%"/>
