@@ -161,7 +161,9 @@ udp6       0      0 :::9094                 :::*                                
 [root@prometheus-server-192-168-100-100 opt]# wget https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-amd64.tar.gz
 [root@prometheus-server-192-168-100-100 opt]# tar -zxf node_exporter-0.18.1.linux-amd64.tar.gz
 ```
+
 - 配置node_exporter system服务并启动
+
 ```shell
 [root@prometheus-server-192-168-100-100 opt]# vi /usr/lib/systemd/system/node_exporter.service
 [Unit]
