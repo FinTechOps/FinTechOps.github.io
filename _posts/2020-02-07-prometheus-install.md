@@ -153,7 +153,9 @@ udp6       0      0 :::9094                 :::*                                
    如果有特殊监控需求，则需要按照prometheus exporter开发规范开发定制的exporter。
 
 ### 安装node_exporter并启动
+
 - 在**每台服务器**上执行以下命令
+
 ```shell
 [root@prometheus-server-192-168-100-100 ~]# cd /opt/
 [root@prometheus-server-192-168-100-100 opt]# wget https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-amd64.tar.gz
@@ -289,6 +291,7 @@ prometheus在收集到监控数据过后，会根据配置中的rules规则，�
 - 以上表达式node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100，当小于10的时候需要告警
 
 - 由此可以写出rules规则：
+
 ```yaml
 groups:
 - name: NodeExporterAlert
