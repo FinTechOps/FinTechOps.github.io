@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "prometheus搭建和配置"
+title: "prometheus搭建和配置（一）"
 date: 2020-02-07 10:00:00
 published: 2020-02-07 10:00:00
 comments: true
@@ -40,6 +40,17 @@ author: yangyang
 
 ## 搭建准备
 
+### 服务器列表
+
+| name | ip |  type | os |
+|:-----:|:-----:|:-----:|:-----:|
+|prometheus-server | 192.168.100.100 | prometheus-server | centos7 64位 |
+|node_exporter01 | 192.168.100.101 | agent | centos7 64位 | 
+|node_exporter01 | 192.168.100.102 | agent | centos7 64位 | 
+|node_exporter01 | 192.168.100.103 | agent | centos7 64位 |
+
+### 环境准备
+
 每台服务器上执行以下命令准备环境
 ```shell
 # 永久关闭selinux
@@ -55,17 +66,6 @@ Permissive
 Created symlink from /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service to /usr/lib/systemd/system/firewalld.service.
 Created symlink from /etc/systemd/system/multi-user.target.wants/firewalld.service to /usr/lib/systemd/system/firewalld.service.
 ```
-
-### 服务器列表
-
-name | ip |  type | os |
--|-|-|-
-prometheus-server | 192.168.100.100 | prometheus-server | centos7 64位
-node_exporter01 | 192.168.100.101 | agent | centos7 64位
-node_exporter01 | 192.168.100.102 | consul01 | centos7 64位
-node_exporter01 | 192.168.100.103 | consul02 | centos7 64位
-
-### 环境准备
 
 ## prometheus安装
 
