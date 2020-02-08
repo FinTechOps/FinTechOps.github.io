@@ -90,6 +90,28 @@ Archive:  consul_1.6.3_linux_amd64.zip
 在consul01上执行以下命令，写入systemd服务启动，并设置开机启动
 
 ```shell
+[root@consul01-192-168-100-101 opt]# cat /usr/lib/systemd/system/consul.service
+[Unit]
+Description=Prometheus consul
+After=local-fs.target network-online.target network.target
+Wants=local-fs.target network-online.target network.target
+[Service]
+User=root
+Group=root
+Type=simple
+ExecStart=/opt/consul agent -server -bootstrap-expect=3 -data-dir=/data/consul -client=0.0.0.0 -datacenter=test -ui
+# data-dir 数据目录
+# datacenter 数据中心名
+[Install]
+WantedBy=multi-user.target
+[root@consul01-192-168-100-101 opt]# systemctl daemon-reload
+[root@consul01-192-168-100-101 opt]# systemctl start consul
+[root@consul01-192-168-100-101 opt]# systemctl enable consul
+Created symlink from /etc/systemd/system/multi-user.target.wants/consul.service to /usr/lib/systemd/system/consul.service.
+```
+在consul02，consul03上执行以下命令，写入systemd服务启动，并设置开机启动
+
+```shell
 [root@consul02-192-168-100-102 opt]# cat /usr/lib/systemd/system/consul.service
 [Unit]
 Description=Prometheus consul
@@ -110,4 +132,91 @@ WantedBy=multi-user.target
 [root@consul02-192-168-100-102 opt]# systemctl enable consul
 Created symlink from /etc/systemd/system/multi-user.target.wants/consul.service to /usr/lib/systemd/system/consul.service.
 ```
-在consul02，consul03上执行以下命令，写入systemd服务启动，并设置开机启动
+
+### 验证集群状态
+
+游览器访问consul的web界面，http://192.168.100.101:8500
+
+<img src="/assets/images/posts/prometheus-consul/prometheus-consul.png" width="100%"/>
+
+可以看到三个节点已经形成了集群模式，接下来就可以配置prometheus和自动注册了。
+
+
+## 配置自动发现
+
+### 配置prometheus
+Prometheus主要配置prometheus.yml中consul_sd_configs，配置如下
+
+```yaml
+# 全局配置
+global:
+  scrape_interval:     15s   # 多久 收集 一次数据
+  evaluation_interval: 30s   # 多久评估一次 规则
+  scrape_timeout:      10s   # 每次 收集数据的 超时时间
+
+scrape_configs:
+  - job_name: 'consul'
+    consul_sd_configs:
+      - server: '192.168.100.101:8500'
+    relabel_configs:
+      - source_labels: [__meta_consul_tags]
+        regex: .*,prome,.*
+        action: keep
+      - source_labels: [__meta_consul_service]
+        target_label: job
+```
+
+这里简单介绍一下relabel_configs，Prometheus 允许用户在采集任务设置中，通过relabel_configs来添加自定义的Relabeling的额过程，来对标签进行指定规则的重写。
+
+```yaml
+      - source_labels: [__meta_consul_tags]
+        regex: .*,prome,.*
+        action: keep
+```
+keep: 丢弃 source_labels 的值中没有匹配到 regex 正则表达式内容的 Target 实例,实现过滤__meta_consul_service中prome标签
+```yaml
+      - source_labels: [__meta_consul_service]
+        target_label: job
+```
+这段配置是指将__meta_consul_service标签得值替换成job标签的值
+
+重启生效
+```shell
+[root@prometheus-server-192-168-100-100 ~]# curl -XPOST http://127.0.0.1:9090/-/reload
+```
+
+## 注册
+
+我们将consul01，consul02，consul03上的node_exporter注册到consul，然后prometheus就能自动发现，进行监控数据的采集了。
+
+### 向consul注册服务
+
+```shell
+[root@prometheus-server-192-168-100-100 ~]# curl -X PUT -d '{"id": "consul01-192-168-100-101","name": "node_exporter","address": "192.168.100.101","port": 9100,"tags": ["test","prome","node_exporter"],"checks": [{"http": "http://192.168.100.101:9100/metrics","interval": "35s"}]}' http://192.168.100.101:8500/v1/agent/service/register
+[root@prometheus-server-192-168-100-100 ~]# curl -X PUT -d '{"id": "consul01-192-168-100-102","name": "node_exporter","address": "192.168.100.102","port": 9100,"tags": ["test","prome","node_exporter"],"checks": [{"http": "http://192.168.100.102:9100/metrics","interval": "35s"}]}' http://192.168.100.101:8500/v1/agent/service/register
+[rootprometheus-server-192-168-100-100 ~]# curl -X PUT -d '{"id": "consul01-192-168-100-103","name": "node_exporter","address": "192.168.100.103","port": 9100,"tags": ["test","prome","node_exporter"],"checks": [{"http": "http://192.168.100.103:9100/metrics","interval": "35s"}]}' http://192.168.100.101:8500/v1/agent/service/register
+
+```
+
+### 验证
+
+首先我们到consul web页面http://192.168.100.101:8500 查看consul注册成功与否。
+
+1.进入页面点击service查看注册上来的服务
+
+<img src="/assets/images/posts/prometheus-consul/consul-register01.png" width="100%"/>
+
+2.查看注册服务的详细情况
+
+<img src="/assets/images/posts/prometheus-consul/consul-register02.png" width="100%"/>
+
+然后我们到prometheus 的web页面查看自动发现成功与否，游览器访问http://192.168.100.100:9090/targets
+
+<img src="/assets/images/posts/prometheus-consul/prometheus-register.png" width="100%"/>
+
+注册成功
+
+
+# 总结
+
+本文介绍了如何使用consul集群的搭建方式，以及基于consul实现prometheus监控服务的自动注册。实际生产应用中，其实还需要做更多的事，比如监控安装自动化流程中，调用consul的注册接口将安装的监控服务注册上去，或者使用cmdb这种管理平台的数据来自动注册到consul，来实现真正的实现自动注册与发现。
