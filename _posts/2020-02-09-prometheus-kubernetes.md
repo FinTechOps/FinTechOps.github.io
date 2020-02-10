@@ -181,7 +181,11 @@ scrape_configs:
 
 游览器打开http://192.168.100.100:9090/targets，可以看到cadvisor的监控已经自动发现并开始采集。
 
+<img src="/assets/images/posts/prometheus-kubernetes/prometheus-cadvisor.png" width="100%"/>
 
+打开graph界面http://192.168.100.100:9090/graph，查询cadvisor的指标container_cpu_system_seconds_total
+
+<img src="/assets/images/posts/prometheus-kubernetes/prometheus-cadvisor01.png" width="100%"/>
 
 ### 监控kubelet
 
@@ -194,6 +198,26 @@ kubernetes部署在每个节点上kubelet组件都带有prometheus采集的metri
     kubelet的metrics地址: /metrics
 
 建议采用第二种数据采集调用方式，理由是方便node的服务发现和prometheus的target清晰展示。
+
+注意
+
+- kubelet 需要开启下面两个参数
+
+```
+--authentication-token-webhook
+--authorization-mode=Webhook
+```
+- prometheus配置的token需要有以下权限
+```
+- apiGroups:
+  - ""
+  resources:
+  - nodes/metrics
+  verbs:
+  - get
+```
+
+
 
 下面为配置
 
@@ -262,4 +286,15 @@ scrape_configs:
       replacement: https-metrics
       action: replace
 ```
+#### 验证
 
+游览器打开http://192.168.100.100:9090/targets，可以看到kubelet的监控已经自动发现并开始采集。
+
+<img src="/assets/images/posts/prometheus-kubernetes/prometheus-kubelet01.png" width="100%"/>
+
+打开graph界面http://192.168.100.100:9090/graph，查询kubelet的指标container_cpu_system_seconds_total
+
+<img src="/assets/images/posts/prometheus-kubernetes/prometheus-kubelet02.png" width="100%"/>
+
+
+未完待续
