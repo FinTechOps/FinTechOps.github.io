@@ -4,8 +4,8 @@ title: "配置k8s使用ceph块存储服务"
 date: 2020-02-07 21:38:00
 published: 2020-02-07 21:38:00
 comments: true
-categories: CICD
-tags: [cicd]
+categories: KUBERNETES
+tags: [kubernetes]
 author: ykfq
 ---
 
