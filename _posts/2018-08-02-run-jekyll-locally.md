@@ -41,9 +41,9 @@ yum -y install gcc-c++ patch readline readline-devel zlib zlib-devel \
 
 安装 rvm 时需要下载一些依赖包，建议先设置代理：
 ```bash
-export https_proxy="http:192.168.xx.xx:443"
-
 gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+
+export https_proxy="http:192.168.xx.xx:443"
 curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 curl -L get.rvm.io | bash -s stable
 
