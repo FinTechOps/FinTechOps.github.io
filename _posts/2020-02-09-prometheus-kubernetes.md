@@ -296,5 +296,7 @@ scrape_configs:
 
 <img src="/assets/images/posts/prometheus-kubernetes/prometheus-kubelet02.png" width="100%"/>
 
+可以看到kubelet监控成功
 
-未完待续
+
+# 未完待续
