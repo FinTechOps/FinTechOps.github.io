@@ -295,6 +295,7 @@ prometheus在收集到监控数据过后，会根据配置中的rules规则，�
 ```yaml
 [root@prometheus-server-192-168-100-100 prometheus-2.15.2.linux-amd64]# mkdir rules
 [root@prometheus-server-192-168-100-100 prometheus-2.15.2.linux-amd64]# vi rules/node_exporter.yml
+{% raw  %}
 groups:
 - name: NodeExporterAlert
   rules:
@@ -308,6 +309,7 @@ groups:
       # 表达式触发后当前值为{{ $value }}
       summary: "Out of memory (instance {{ $labels.instance }})"
       description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+{% endraw %}
 ```
 - 配置prometheus使rules生效
 
